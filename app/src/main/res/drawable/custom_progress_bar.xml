@@ -1,0 +1,40 @@
+<!-- res/drawable/custom_progress_bar.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="8dp"/>
+            <solid android:color="#5D5A5A"/>
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="8dp"/>
+                <solid android:color="#43B16F"/>
+            </shape>
+        </scale>
+    </item>
+
+
+    <!-- Yellow color for progress between 33% and 66% -->
+    <item android:id="@android:id/secondaryProgress">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="8dp"/>
+                <solid android:color="#FFC107"/>
+            </shape>
+        </scale>
+    </item>
+
+    <!-- Green color for progress >= 66% -->
+    <item android:id="@android:id/progress">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="8dp"/>
+                <solid android:color="#43B16F"/>
+            </shape>
+        </scale>
+    </item>
+</layer-list>

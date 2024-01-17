@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "645603562149",
+    "project_id": "seamansbook-test-application",
+    "storage_bucket": "seamansbook-test-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645603562149:android:c1527c232ce2026850734c",
+        "android_client_info": {
+          "package_name": "app.seamansbook.tests"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGI0NtudleL7z4pmLgobsKsBtzZngvpPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
