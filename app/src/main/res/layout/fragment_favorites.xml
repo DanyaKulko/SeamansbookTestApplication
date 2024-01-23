@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15sp"
-
+                android:layout_marginBottom="20sp"
                 app:layout_constraintTop_toBottomOf="@+id/favoritesTitle" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

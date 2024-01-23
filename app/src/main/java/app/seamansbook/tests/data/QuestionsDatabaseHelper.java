@@ -8,8 +8,8 @@ public class QuestionsDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "my_database.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String QUESTIONS_TABLE_NAME = "questions";
-    private static final String TEST_PASSING_TABLE_NAME = "test_passing";
+    static final String QUESTIONS_TABLE_NAME = "questions";
+    static final String TEST_PASSING_TABLE_NAME = "test_passing";
     static final String USER_SCORES_TABLE_NAME = "user_scores";
 
 
@@ -31,7 +31,8 @@ public class QuestionsDatabaseHelper extends SQLiteOpenHelper {
                     "answers TEXT," +
                     "current_question INTEGER," +
                     "is_completed TEXT," +
-                    "percent TEXT)";
+                    "percent TEXT," +
+                    "date TEXT)";
 
 
     private static final String CREATE_USER_SCORES_TABLE_QUERY =

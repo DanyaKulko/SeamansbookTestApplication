@@ -7,6 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +32,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,7 +61,7 @@ public class Main extends Fragment {
     private BottomNavigationController bottomNavController;
 
 
-    public Main(){
+    public Main() {
     }
 
 
@@ -108,7 +119,6 @@ public class Main extends Fragment {
         ImageView hints_eye_icon = view.findViewById(R.id.hints_eye_icon);
 
 
-
         assemblyTitleTextView.setText(assemblyTitle);
         disableHints.setChecked(disableHintsValue);
 
@@ -144,6 +154,45 @@ public class Main extends Fragment {
             startActivity(intent);
         });
 
+
+        ImageView profileImageView = view.findViewById(R.id.profile_image);
+
+        String profileImgUrl = preferences.getString("profileImgUrl", "");
+        if (!profileImgUrl.equals("")) {
+            Glide.with(this).load(profileImgUrl).into(profileImageView);
+        } else {
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(requireContext());
+            if (account != null) {
+                String name = account.getDisplayName();
+                Uri imageUrl = account.getPhotoUrl();
+
+                if (imageUrl != null) {
+                    Glide.with(this).load(imageUrl).into(profileImageView);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("profileImgUrl", String.valueOf(imageUrl));
+                    editor.apply();
+                } else {
+                    String firstLetter = name.substring(0, 1).toUpperCase();
+                    Bitmap letterBitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(letterBitmap);
+                    canvas.drawColor(Color.WHITE);
+                    Paint paint = new Paint();
+                    paint.setColor(Color.BLUE);
+                    paint.setTextSize(50);
+                    paint.setTypeface(Typeface.DEFAULT_BOLD);
+                    paint.setTextAlign(Paint.Align.CENTER);
+                    canvas.drawText(firstLetter, 50, 67, paint);
+                    profileImageView.setImageBitmap(letterBitmap);
+                }
+            }
+        }
+
+        ImageView settingIcon = view.findViewById(R.id.settingIcon);
+        settingIcon.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), SettingsActivity.class);
+//            startActivity(intent);
+        });
+
         getVersion();
     }
 
@@ -155,6 +204,7 @@ public class Main extends Fragment {
             mainHandler.post(() -> updateUI(totalQuestions, totalScore));
         });
     }
+
     private void updateUI(int totalQuestions, int totalScore) {
         Activity activity = getActivity();
         if (activity == null || !isAdded()) {

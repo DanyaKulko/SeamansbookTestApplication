@@ -13,7 +13,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // sleep for 2 seconds
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

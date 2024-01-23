@@ -6,13 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".StatisticsFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,6 +60,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/information_title" />
 
                 <TextView
+                    android:id="@+id/successful_questions_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"
@@ -81,6 +79,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/total_questions_title" />
 
                 <TextView
+                    android:id="@+id/failed_questions_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"
@@ -99,6 +98,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/failed_questions_title" />
 
                 <TextView
+                    android:id="@+id/knowledge_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Низкий"
@@ -171,6 +171,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/result_texts">
 
                     <TextView
+                        android:id="@+id/startScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12sp"
@@ -187,6 +188,7 @@
                         android:background="#606060" />
 
                     <TextView
+                        android:id="@+id/averageScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12sp"
@@ -203,6 +205,7 @@
                         android:background="#606060" />
 
                     <TextView
+                        android:id="@+id/bestScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12sp"
@@ -217,344 +220,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/statisticsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/rounded_grey_background"
-                android:orientation="horizontal"
-                android:paddingRight="16sp"
-                android:weightSum="10">
-                <!-- Date and Time Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="7 ДЕК"
-                        android:textColor="#FFFFFF" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="13:34"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="#606060" />
-                <!-- Result Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="71%"
-                        android:textColor="#00FF00" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Результат"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="#606060" />
-                <!-- Error Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:gravity="center"
-                        android:text="11"
-                        android:textColor="#FFFFFF" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Ошибки"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/nextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/round_red_button_background"
-                        android:padding="10sp"
-                        android:src="@drawable/arrow_right" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/rounded_grey_background"
-                android:orientation="horizontal"
-                android:paddingRight="16sp"
-                android:weightSum="10">
-                <!-- Date and Time Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="7 ДЕК"
-                        android:textColor="#FFFFFF" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="13:34"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="#606060" />
-                <!-- Result Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="71%"
-                        android:textColor="#00FF00" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Результат"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="#606060" />
-                <!-- Error Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:gravity="center"
-                        android:text="11"
-                        android:textColor="#FFFFFF" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Ошибки"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/nextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/round_red_button_background"
-                        android:padding="10sp"
-                        android:src="@drawable/arrow_right" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/rounded_grey_background"
-                android:orientation="horizontal"
-                android:paddingRight="16sp"
-                android:weightSum="10">
-                <!-- Date and Time Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="7 ДЕК"
-                        android:textColor="#FFFFFF" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="13:34"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="#606060" />
-                <!-- Result Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="71%"
-                        android:textColor="#00FF00" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Результат"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="#606060" />
-                <!-- Error Column -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="9sp"
-                    android:paddingBottom="9sp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:gravity="center"
-                        android:text="11"
-                        android:textColor="#FFFFFF" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Ошибки"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/nextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/round_red_button_background"
-                        android:padding="10sp"
-                        android:src="@drawable/arrow_right" />
-                </LinearLayout>
-            </LinearLayout>
-
-
+                android:layout_marginBottom="20sp"
+                />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

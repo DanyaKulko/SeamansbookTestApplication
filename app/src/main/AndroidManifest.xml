@@ -18,11 +18,11 @@
         <activity
             android:name=".DownloadQuestionsActivity"
             android:exported="false" />
-        <!--            android:screenOrientation="portrait"-->
+        <!--            android:screenOrientation="fullSensor"-->
         <activity
             android:name=".QuizActivity"
             android:exported="false"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"

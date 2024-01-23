@@ -29,13 +29,12 @@ public class FavoritesListAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.questions = questions;
         this.sharedPreferences = context.getApplicationContext().getSharedPreferences("seamansbookMain", Context.MODE_PRIVATE);
         this.favoriteQuestionsIds = new HashSet<>(sharedPreferences.getStringSet("favorite_questions", new HashSet<>()));
-        Log.d("FavoritesListAdapter", "FavoritesListAdapter: " + favoriteQuestionsIds);
     }
 
     @Override
     public FavoritesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.favorite_question_card, parent, false);
+        View view = inflater.inflate(R.layout.card_favorite_question, parent, false);
         return new FavoritesViewHolder(view);
     }
 

@@ -11,8 +11,11 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import app.seamansbook.tests.models.Question;
 import app.seamansbook.tests.models.TestPassingModel;
@@ -42,7 +45,11 @@ public class TestPassingDBManager {
             }
             String jsonQuestionIds = gson.toJson(questionIds);
 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            String date = dateFormat.format(new Date());
+
             ContentValues values = new ContentValues();
+            values.put("date", date);
             values.put("questions", jsonQuestionIds);
             values.put("answers", "[]");
             values.put("current_question", 1);
@@ -118,6 +125,8 @@ public class TestPassingDBManager {
         List<Question> questions = questionDBManager.getQuestions();
 
         testPassing = createTestPassing(questions);
+
+        Log.d("TestPassingDBManager", "getTestPassingToContinue: " + testPassing.getId());
 
         return testPassing;
     }

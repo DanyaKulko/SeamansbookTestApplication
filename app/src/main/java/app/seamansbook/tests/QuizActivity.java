@@ -125,7 +125,7 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
 
         favoritesButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("OPEN_FRAGMENT", "STATISTICS");
+            intent.putExtra("OPEN_FRAGMENT", "FAVORITES");
             startActivity(intent);
             finish();
         });
@@ -512,7 +512,14 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
 
             super.onBackPressed();
         }
+    }
 
+    @Override
+    protected void onDestroy() {
+        if (dialog_result != null && dialog_result.isShowing()) {
+            dialog_result.dismiss();
+        }
+        super.onDestroy();
     }
 
     private void leaveTest() {

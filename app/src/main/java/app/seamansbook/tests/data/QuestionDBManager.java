@@ -123,10 +123,19 @@ public class QuestionDBManager {
         return inClause.toString();
     }
 
+    private String createOrderClause(List<String> ids) {
+        StringBuilder orderClause = new StringBuilder("ORDER BY CASE question_id ");
+        for (int i = 0; i < ids.size(); i++) {
+            orderClause.append("WHEN '").append(ids.get(i)).append("' THEN ").append(i).append(" ");
+        }
+        orderClause.append("END");
+        return orderClause.toString();
+    }
+
     public List<Question> getQuestionsByIds(List<String> ids) {
         SQLiteDatabase database = db.getReadableDatabase();
-        String[] idArray = ids.toArray(new String[ids.size()]);
-        String selectQuery = "SELECT  * FROM questions WHERE question_id IN (" + getInClause(ids.size()) + ")";
+        String[] idArray = ids.toArray(new String[0]);
+        String selectQuery = "SELECT  * FROM questions WHERE question_id IN (" + getInClause(ids.size()) + ") " + createOrderClause(ids);
         Cursor cursor = database.rawQuery(selectQuery, idArray);
 
         Gson gson = new Gson();

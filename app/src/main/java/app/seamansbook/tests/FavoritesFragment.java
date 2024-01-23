@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,8 @@ import app.seamansbook.tests.models.Question;
 
 public class FavoritesFragment extends Fragment {
 
-    public FavoritesFragment() {}
+    public FavoritesFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,13 @@ public class FavoritesFragment extends Fragment {
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("seamansbookMain", MODE_PRIVATE);
         Set<String> favoriteQuestionsIds = sharedPreferences.getStringSet("favorite_questions", new HashSet<>());
 
-        QuestionDBManager dbManager = new QuestionDBManager(requireContext());
-        List<Question> favoriteQuestions = dbManager.getQuestionsByIds(new ArrayList<>(favoriteQuestionsIds));
-        FavoritesListAdapter favoritesListAdapter = new FavoritesListAdapter(getContext(), favoriteQuestions);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        if (!favoriteQuestionsIds.isEmpty()) {
+            QuestionDBManager dbManager = new QuestionDBManager(requireContext());
+            List<Question> favoriteQuestions = dbManager.getQuestionsByIds(new ArrayList<>(favoriteQuestionsIds));
+            FavoritesListAdapter favoritesListAdapter = new FavoritesListAdapter(getContext(), favoriteQuestions);
+            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        recyclerView.setAdapter(favoritesListAdapter);
+            recyclerView.setAdapter(favoritesListAdapter);
+        }
     }
 }

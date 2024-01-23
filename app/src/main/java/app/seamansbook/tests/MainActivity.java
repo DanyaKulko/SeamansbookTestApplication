@@ -4,13 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import app.seamansbook.tests.interfaces.BottomNavigationController;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
@@ -27,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationC
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
 
-            Log.d("MainActivity", "onNavigationItemSelected: " + item.getItemId() + " " + R.id.action_home);
             switch (item.getItemId()) {
                 case R.id.action_home:
                     selectedFragment = new Main();
@@ -58,19 +59,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationC
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("OPEN_FRAGMENT")) {
             String fragmentId = intent.getStringExtra("OPEN_FRAGMENT");
-            if (Objects.equals(fragmentId, "STATISTICS")) {
-                bottomNavigationView.setSelectedItemId(R.id.action_statistics);
-                Fragment selectedFragment = new StatisticsFragment();
+            if (Objects.equals(fragmentId, "FAVORITES")) {
+                bottomNavigationView.setSelectedItemId(R.id.action_favorite);
+                Fragment selectedFragment = new FavoritesFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             }
         } else {
             bottomNavigationView.setSelectedItemId(R.id.action_home);
         }
-
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-//        if (account != null) {
-//            String name = account.getDisplayName();
-//        }
     }
 
     @Override
