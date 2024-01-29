@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
@@ -71,38 +72,38 @@
                 android:id="@+id/yourResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="75%"
                 android:textColor="#33C98E"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView4"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="75%" />
 
             <TextView
                 android:id="@+id/passPercent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="67%"
                 android:textColor="@color/primaryText"
                 android:textSize="17sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/textView10"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView10" />
+                app:layout_constraintTop_toTopOf="@+id/textView10"
+                tools:text="67%" />
 
             <TextView
                 android:id="@+id/addedToFavorites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3"
                 android:textColor="@color/primaryText"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/textView12"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView12" />
+                app:layout_constraintTop_toTopOf="@+id/textView12"
+                tools:text="3" />
 
 
             <androidx.appcompat.widget.AppCompatButton

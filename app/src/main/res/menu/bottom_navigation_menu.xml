@@ -2,21 +2,21 @@
     <item
         android:id="@+id/action_home"
         android:icon="@drawable/nav_home_icon"
-        android:title="Home"/>
+        android:title="@string/nav__item_home"/>
     <item
         android:id="@+id/action_statistics"
         android:icon="@drawable/nav_statistics_icon"
-        android:title="Statistics" />
+        android:title="@string/nav__item_statistics" />
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/nav_search_icon"
-        android:title="Search" />
+        android:title="@string/nav__item_search" />
     <item
         android:id="@+id/action_favorite"
         android:icon="@drawable/nav_favorite_icon"
-        android:title="Favorites" />
+        android:title="@string/nav__item_favorites" />
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/nav_settings_icon"
-        android:title="Settings" />
+        android:title="@string/nav__item_settings" />
 </menu>

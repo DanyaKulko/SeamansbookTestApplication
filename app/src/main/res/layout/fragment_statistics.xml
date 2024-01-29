@@ -10,6 +10,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30sp"
                 android:gravity="center"
-                android:text="Статистика"
+                android:text="@string/fragment_statistics_title"
                 android:textColor="@color/primaryText"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -29,19 +30,19 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/defaultCardBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/rounded_grey_background"
                 android:padding="12dp">
 
                 <TextView
                     android:id="@+id/information_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Информация"
+                    android:text="@string/fragment_statistics_first_block_title"
                     android:textColor="@color/primaryText"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -54,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="28sp"
-                    android:text="Успешно завершенные тесты"
+                    android:text="@string/fragment_statistics_first_block_item_one"
                     android:textColor="@color/primaryText"
                     app:layout_constraintStart_toStartOf="@+id/information_title"
                     app:layout_constraintTop_toBottomOf="@+id/information_title" />
@@ -63,17 +64,17 @@
                     android:id="@+id/successful_questions_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
                     android:textColor="@color/primaryText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/total_questions_title" />
+                    app:layout_constraintTop_toTopOf="@+id/total_questions_title"
+                    tools:text="2" />
 
                 <TextView
                     android:id="@+id/failed_questions_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18sp"
-                    android:text="Неуспешно завершенные тесты"
+                    android:text="@string/fragment_statistics_first_block_item_two"
                     android:textColor="@color/primaryText"
                     app:layout_constraintStart_toStartOf="@+id/total_questions_title"
                     app:layout_constraintTop_toBottomOf="@+id/total_questions_title" />
@@ -82,17 +83,17 @@
                     android:id="@+id/failed_questions_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
                     android:textColor="@color/primaryText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/failed_questions_title" />
+                    app:layout_constraintTop_toTopOf="@+id/failed_questions_title"
+                    tools:text="2" />
 
                 <TextView
                     android:id="@+id/failed_questions_title123"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18sp"
-                    android:text="Уровень готовности"
+                    android:text="@string/fragment_statistics_first_block_item_three"
                     android:textColor="@color/primaryText"
                     app:layout_constraintStart_toStartOf="@+id/failed_questions_title"
                     app:layout_constraintTop_toBottomOf="@+id/failed_questions_title" />
@@ -101,20 +102,19 @@
                     android:id="@+id/knowledge_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Низкий"
                     android:textColor="@color/primaryText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/failed_questions_title123" />
+                    app:layout_constraintTop_toTopOf="@+id/failed_questions_title123"
+                    tools:text="Низкий" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!--                android:background="@drawable/rounded_grey_background"-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/statisticsPercentsBlock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/border_1px"
                 android:paddingTop="16sp"
                 android:paddingBottom="16sp">
 
@@ -134,7 +134,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Начальный результат"
+                        android:text="@string/fragment_statistics_second_block_item_one"
                         android:textColor="@color/primaryText" />
 
                     <TextView
@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Средний результат"
+                        android:text="@string/fragment_statistics_second_block_item_two"
                         android:textColor="@color/primaryText" />
 
                     <TextView
@@ -150,18 +150,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Лучший результат"
+                        android:text="@string/fragment_statistics_second_block_item_three"
                         android:textColor="@color/primaryText" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
+                    style="@style/statisticsPercentsSubBlock"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
                     android:layout_marginTop="15sp"
-                    android:background="@drawable/border_1px"
+                    android:layout_marginRight="10sp"
                     android:orientation="horizontal"
                     android:paddingTop="3sp"
                     android:paddingBottom="3sp"
@@ -178,9 +178,9 @@
                         android:layout_marginBottom="12sp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="27%"
                         android:textColor="#D25351"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:text="27%" />
 
                     <View
                         android:layout_width="1sp"
@@ -195,9 +195,9 @@
                         android:layout_marginBottom="12sp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="49%"
                         android:textColor="#D25351"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:text="49%" />
 
                     <View
                         android:layout_width="1sp"
@@ -212,9 +212,9 @@
                         android:layout_marginBottom="12sp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="71%"
                         android:textColor="#00CB47"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:text="71%" />
                 </LinearLayout>
 
 
@@ -225,7 +225,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                />
+                tools:listitem="@layout/card_statistics_item"
+                tools:itemCount="5"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

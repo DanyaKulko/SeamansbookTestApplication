@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +45,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         RecyclerView recyclerView = view.findViewById(R.id.favoritesRecyclerView);
+        recyclerView.setNestedScrollingEnabled(false);
 
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("seamansbookMain", MODE_PRIVATE);
         Set<String> favoriteQuestionsIds = sharedPreferences.getStringSet("favorite_questions", new HashSet<>());
@@ -53,7 +53,7 @@ public class FavoritesFragment extends Fragment {
         if (!favoriteQuestionsIds.isEmpty()) {
             QuestionDBManager dbManager = new QuestionDBManager(requireContext());
             List<Question> favoriteQuestions = dbManager.getQuestionsByIds(new ArrayList<>(favoriteQuestionsIds));
-            FavoritesListAdapter favoritesListAdapter = new FavoritesListAdapter(getContext(), favoriteQuestions);
+            FavoritesListAdapter favoritesListAdapter = new FavoritesListAdapter(requireContext(), favoriteQuestions);
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
             recyclerView.setAdapter(favoritesListAdapter);

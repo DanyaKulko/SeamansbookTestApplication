@@ -35,8 +35,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
-                    android:src="@drawable/star_icon"
-                    android:theme="@style/icon" />
+                    android:src="@drawable/icon__star" />
 
                 <TextView
                     android:id="@+id/questionCounter"
@@ -68,7 +67,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="60dp"
                     android:layout_marginBottom="15dp"
-                    android:src="@drawable/report_icon"
+                    android:src="@drawable/icon__report"
                     android:theme="@style/icon" />
 
                 <ImageView
@@ -81,7 +80,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="18dp"
                     android:layout_marginBottom="15dp"
-                    android:src="@drawable/quit_icon"
+                    android:src="@drawable/icon__quit"
                     android:theme="@style/icon" />
 
 
@@ -123,7 +122,9 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHeight_default="wrap"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/answer_button_radio"
+                    tools:itemCount="4"/>
 
             </LinearLayout>
 

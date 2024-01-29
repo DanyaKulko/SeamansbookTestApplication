@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1000;
     private SharedPreferences preferences;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +42,12 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        Button loginButton = findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(v -> {
-            loginUsingGoogle();
-        });
+        SignInButton loginButton = findViewById(R.id.loginButton);
+        try {
+            TextView textView = (TextView) loginButton.getChildAt(0);
+            textView.setText(R.string.login_activity_main_button);
+        } catch (Exception ignored) {}
+        loginButton.setOnClickListener(v -> loginUsingGoogle());
     }
 
     private void loginUsingGoogle() {
@@ -73,20 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 ApiInterface apiService = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
 
-//                AtomicReference<String> token = new AtomicReference<>("");
-//
-//                FirebaseMessaging.getInstance().getToken().addOnSuccessListener(res -> {
-//                    if(!TextUtils.isEmpty(res)) {
-//                        token.set(res);
-//                    }
-//                });
-//
-//                Log.d("token", token.get());
-
                 String token = preferences.getString("notificationToken", "");
-
-                Log.d("myLogs", "token: " + token);
-
 
                 CreateUserRequest createUserRequest = new CreateUserRequest(
                         account.getDisplayName(),
@@ -95,14 +84,6 @@ public class LoginActivity extends AppCompatActivity {
                         Config.APP_KEY,
                         token
                 );
-
-                Log.d("myLogs", "createUserRequest: " + createUserRequest);
-                Log.d("myLogs", "getDisplayName: " + createUserRequest.getDisplayName());
-                Log.d("myLogs", "getEmail: " + createUserRequest.getEmail());
-                Log.d("myLogs", "getPhotoUrl: " + createUserRequest.getPhotoURL());
-                Log.d("myLogs", "getAppKey: " + createUserRequest.getAssemblyId());
-                Log.d("myLogs", "getToken: " + createUserRequest.getToken());
-
 
 
                 Call<CreateUserResponse> call = apiService.registerUser(createUserRequest);
@@ -128,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Произошла ошибка сервера", Snackbar.LENGTH_LONG);
+                            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Произошла ошибка сервера: Empty response", Snackbar.LENGTH_LONG);
                             snackbar.setAction("Повторить", v -> loginUsingGoogle());
                             snackbar.show();
                         }
@@ -143,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-            } catch (Exception e ) {
+            } catch (Exception e) {
                 Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Произошла ошибка: " + e.getMessage(), Snackbar.LENGTH_LONG);
                 snackbar.setAction("Повторить", v -> loginUsingGoogle());
                 snackbar.show();

@@ -1,20 +1,8 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Theme.SeamansbookTestApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/backgroundColor</item>
         <item name="android:fontFamily">@font/montserrat</item>
-
-        <!-- Customize your theme here. -->
-
     </style>
 
     <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
@@ -30,19 +18,43 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/black</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="icon" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:tint">#FFFDFD</item>
     </style>
 
+    <style name="homeInfoTestBlock">
+        <item name="android:background">@drawable/border</item>
+    </style>
 
-    <style name="mytheme" parent="android:style/Theme.Translucent">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:background">@android:color/transparent</item>
+    <style name="homeAdditionalButtons">
+        <item name="android:background">@drawable/border_secondary</item>
+    </style>
+
+    <style name="statisticsPercentsBlock">
+        <item name="android:background">@drawable/border_1px</item>
+    </style>
+    <style name="statisticsPercentsSubBlock">
+        <item name="android:background">@drawable/border_1px</item>
+    </style>
+
+    <style name="defaultCardBackground">
+        <item name="android:background">@drawable/rounded_grey_background</item>
+    </style>
+
+    <style name="download_questions_background">
+        <item name="android:background">@drawable/download_activity_background_image</item>
+    </style>
+
+    <style name="download_questions_ackButton">
+        <item name="android:background">@drawable/border_ocean_gradient</item>
+        <item name="android:backgroundTint">@color/backgroundSecondaryColor</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name="searchFirstBlock">
+        <item name="android:background">@drawable/border_1px</item>
     </style>
 
 </resources>

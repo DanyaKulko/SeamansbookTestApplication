@@ -1,5 +1,7 @@
 package app.seamansbook.tests;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,13 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 import app.seamansbook.tests.adapters.StatisticsListAdapter;
 import app.seamansbook.tests.data.QuestionScoresDBManager;
@@ -63,7 +66,17 @@ public class StatisticsFragment extends Fragment {
 
 
         RecyclerView recyclerView = view.findViewById(R.id.statisticsRecyclerView);
-        StatisticsListAdapter statisticsListAdapter = new StatisticsListAdapter(quizResultModels, id -> {
+        recyclerView.setNestedScrollingEnabled(false);
+
+        SharedPreferences sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        String language = sharedPreferences.getString("selected_language", "null");
+        Locale locale = Locale.getDefault();
+
+        if (!Objects.equals(language, "null")) {
+            locale = new Locale(language);
+        }
+
+        StatisticsListAdapter statisticsListAdapter = new StatisticsListAdapter(locale, quizResultModels, id -> {
             Bundle bundle = new Bundle();
             bundle.putString("id", id);
             WrongAnswersFragment detailedStatisticsFragment = new WrongAnswersFragment();

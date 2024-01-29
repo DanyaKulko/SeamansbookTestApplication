@@ -1,14 +1,14 @@
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/defaultCardBackground"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginTop="20dp"
     android:layout_marginEnd="20dp"
-    android:background="@drawable/rounded_grey_background"
     android:orientation="horizontal"
-    android:paddingRight="16sp"
-    android:weightSum="10"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Date and Time Column -->
+    android:paddingEnd="16sp"
+    android:weightSum="10">
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -23,16 +23,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="7 ДЕК"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/primaryText"
+            tools:text="7 ДЕК" />
 
         <TextView
             android:id="@+id/timeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="13:34"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/primaryText"
+            tools:text="13:34" />
     </LinearLayout>
 
     <View
@@ -54,15 +54,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="71%"
-            android:textColor="#00FF00" />
+            android:textColor="#00FF00"
+            tools:text="71%" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Результат"
-            android:textColor="#FFFFFF" />
+            android:text="@string/card_statistics_result"
+            android:textColor="@color/primaryText" />
     </LinearLayout>
 
     <View
@@ -85,15 +85,15 @@
             android:layout_height="wrap_content"
 
             android:gravity="center"
-            android:text="11"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/primaryText"
+            tools:text="11" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Ошибки"
-            android:textColor="#FFFFFF" />
+            android:text="@string/card_statistics_wrong"
+            android:textColor="@color/primaryText" />
     </LinearLayout>
 
     <LinearLayout
@@ -107,9 +107,8 @@
             android:id="@+id/detailedStatisticsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:background="@drawable/round_red_button_background"
             android:padding="10sp"
-            android:src="@drawable/arrow_right" />
+            android:src="@drawable/icon__arrow_right" />
     </LinearLayout>
 </LinearLayout>

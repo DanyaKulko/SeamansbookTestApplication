@@ -14,12 +14,12 @@ public class WrongAnswersFragmentModel {
         this.wrongAnswers = wrongAnswers;
     }
 
-    public String getDate() {
+    public String getDate(Locale locale) {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", locale);
             Date date = dateFormat.parse(this.date);
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM", locale);
 
             return sdf.format(date).toUpperCase();
         } catch (Exception e) {

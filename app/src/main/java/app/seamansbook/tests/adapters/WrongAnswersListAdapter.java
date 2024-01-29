@@ -67,9 +67,9 @@ public class WrongAnswersListAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private void updateFavoriteButton(ImageView favoriteBtn, String questionId) {
         if (favoriteQuestionsIds.contains(questionId)) {
-            favoriteBtn.setImageResource(R.drawable.favorite_button_field);
+            favoriteBtn.setImageResource(R.drawable.icon__favorite_button_filled);
         } else {
-            favoriteBtn.setImageResource(R.drawable.star_icon);
+            favoriteBtn.setImageResource(R.drawable.icon__star);
         }
     }
 

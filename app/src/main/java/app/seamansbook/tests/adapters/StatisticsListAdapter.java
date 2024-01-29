@@ -1,5 +1,6 @@
 package app.seamansbook.tests.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Locale;
 
 import app.seamansbook.tests.R;
 import app.seamansbook.tests.models.QuizResultModel;
@@ -20,10 +22,12 @@ public class StatisticsListAdapter  extends RecyclerView.Adapter<RecyclerView.Vi
         void onItemClick(String id);
     }
 
-    private OnItemClickListener listener;
+    private final OnItemClickListener listener;
+    private final Locale locale;
 
 
-    public StatisticsListAdapter(List<QuizResultModel> quizResultModels, OnItemClickListener listener) {
+    public StatisticsListAdapter(Locale locale, List<QuizResultModel> quizResultModels, OnItemClickListener listener) {
+        this.locale = locale;
         this.quizResultModels = quizResultModels;
         this.listener = listener;
     }
@@ -36,11 +40,13 @@ public class StatisticsListAdapter  extends RecyclerView.Adapter<RecyclerView.Vi
         return new StatisticsViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         QuizResultModel quizResultModel = quizResultModels.get(position);
         StatisticsViewHolder statisticsViewHolder = (StatisticsViewHolder) holder;
-        statisticsViewHolder.date.setText(quizResultModel.getDate());
+
+        statisticsViewHolder.date.setText(quizResultModel.getDate(locale));
         statisticsViewHolder.time.setText(quizResultModel.getTime());
         statisticsViewHolder.score.setText(quizResultModel.getScore() + "%");
         statisticsViewHolder.errorsCount.setText(String.valueOf(quizResultModel.getErrorsCount()));

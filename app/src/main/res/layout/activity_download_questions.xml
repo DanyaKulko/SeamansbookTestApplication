@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1C1C"
+    android:background="@color/backgroundColor"
     tools:context=".DownloadQuestionsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/download_questions_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/download_activity_background_image">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -70,18 +70,16 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/returnButton"
+                style="@style/download_questions_ackButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/border_ocean_gradient"
-                android:backgroundTint="@color/backgroundSecondaryColor"
-                android:text="Вернуться на главную страницу"
+                android:text="@string/download_questions_back_to_home"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/downloadButton" />
 

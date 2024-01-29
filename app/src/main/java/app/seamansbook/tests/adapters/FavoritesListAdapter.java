@@ -2,7 +2,6 @@ package app.seamansbook.tests.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,7 @@ public class FavoritesListAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.favoriteQuestionsIds = new HashSet<>(sharedPreferences.getStringSet("favorite_questions", new HashSet<>()));
     }
 
+    @NonNull
     @Override
     public FavoritesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -60,10 +60,10 @@ public class FavoritesListAdapter extends RecyclerView.Adapter<RecyclerView.View
         favoriteBtn.setOnClickListener(v -> {
             if (favoriteQuestionsIds.contains(question.get_id())) {
                 favoriteQuestionsIds.remove(question.get_id());
-                favoriteBtn.setImageResource(R.drawable.star_icon);
+                favoriteBtn.setImageResource(R.drawable.icon__star);
             } else {
                 favoriteQuestionsIds.add(question.get_id());
-                favoriteBtn.setImageResource(R.drawable.favorite_button_field);
+                favoriteBtn.setImageResource(R.drawable.icon__favorite_button_filled);
             }
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putStringSet("favorite_questions", new HashSet<>(favoriteQuestionsIds));

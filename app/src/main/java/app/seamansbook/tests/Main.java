@@ -17,25 +17,29 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.skydoves.balloon.ArrowOrientation;
+import com.skydoves.balloon.ArrowPositionRules;
+import com.skydoves.balloon.Balloon;
+import com.skydoves.balloon.BalloonAnimation;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -91,22 +95,37 @@ public class Main extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         ConstraintLayout statisticsBlock = view.findViewById(R.id.statisticsBlock);
         ConstraintLayout favoriteBlock = view.findViewById(R.id.favoriteBlock);
+        ImageView settingIcon = view.findViewById(R.id.settingIcon);
+        ImageView notificationsIcon = view.findViewById(R.id.notificationsIcon);
 
         statisticsBlock.setOnClickListener(v -> {
-            Fragment selectedFragment = new StatisticsFragment();
-            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            Fragment statisticsFragment = new StatisticsFragment();
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, statisticsFragment).commit();
             bottomNavController.onItemSelected(R.id.action_statistics);
         });
 
         favoriteBlock.setOnClickListener(v -> {
-            Fragment selectedFragment = new FavoritesFragment();
-            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            Fragment favoritesFragment = new FavoritesFragment();
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, favoritesFragment).commit();
             bottomNavController.onItemSelected(R.id.action_favorite);
         });
 
+        settingIcon.setOnClickListener(v -> {
+            Fragment settingsFragment = new SettingsFragment();
+            requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, settingsFragment).commit();
+            bottomNavController.onItemSelected(R.id.action_settings);
+        });
+
+        notificationsIcon.setOnClickListener(v -> {
+            TopSheetNotificationsFragment bottomSheetFragment = new TopSheetNotificationsFragment();
+            bottomSheetFragment.show(requireActivity().getSupportFragmentManager(), bottomSheetFragment.getTag());
+        });
+
         progressBar = view.findViewById(R.id.simpleProgressBar);
+
         loadDatabaseInfo();
 
         preferences = requireActivity().getSharedPreferences("seamansbookMain", MODE_PRIVATE);
@@ -115,7 +134,7 @@ public class Main extends Fragment {
 
         TextView assemblyTitleTextView = view.findViewById(R.id.assemblyTitleTextView);
         Button myBtn = view.findViewById(R.id.startButton);
-        Switch disableHints = view.findViewById(R.id.disableHintsSwitch);
+        SwitchCompat disableHints = view.findViewById(R.id.disableHintsSwitch);
         ImageView hints_eye_icon = view.findViewById(R.id.hints_eye_icon);
 
 
@@ -123,10 +142,33 @@ public class Main extends Fragment {
         disableHints.setChecked(disableHintsValue);
 
         if (disableHintsValue) {
-            hints_eye_icon.setImageResource(R.drawable.hints_eye_open_icon);
+            hints_eye_icon.setImageResource(R.drawable.icon__hints_eye_open);
         } else {
-            hints_eye_icon.setImageResource(R.drawable.hints_eye_icon);
+            hints_eye_icon.setImageResource(R.drawable.icon__hints_eye);
         }
+
+
+
+        CardView tooltipCardView = view.findViewById(R.id.tooltipCardView);
+        tooltipCardView.setOnClickListener(v -> {
+            Balloon balloon = new Balloon.Builder(requireContext())
+                    .setArrowSize(10)
+                    .setArrowOrientation(ArrowOrientation.TOP)
+                    .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                    .setArrowPosition(0.5f)
+                    .setWidth(200)
+                    .setPadding(4)
+                    .setTextSize(12f)
+                    .setCornerRadius(8f)
+                    .setAlpha(0.9f)
+                    .setText(getString(R.string.fragment_main_tint))
+                    .setBalloonAnimation(BalloonAnimation.FADE)
+                    .build();
+
+            balloon.showAlignBottom(tooltipCardView);
+        });
+
+
 
         disableHints.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = preferences.edit();
@@ -134,11 +176,14 @@ public class Main extends Fragment {
             editor.apply();
 
             if (isChecked) {
-                hints_eye_icon.setImageResource(R.drawable.hints_eye_open_icon);
+                hints_eye_icon.setImageResource(R.drawable.icon__hints_eye_open);
             } else {
-                hints_eye_icon.setImageResource(R.drawable.hints_eye_icon);
+                hints_eye_icon.setImageResource(R.drawable.icon__hints_eye);
             }
         });
+
+
+
 
         installUpdatedQuestions = view.findViewById(R.id.installUpdatedQuestions);
 
@@ -187,11 +232,6 @@ public class Main extends Fragment {
             }
         }
 
-        ImageView settingIcon = view.findViewById(R.id.settingIcon);
-        settingIcon.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), SettingsActivity.class);
-//            startActivity(intent);
-        });
 
         getVersion();
     }

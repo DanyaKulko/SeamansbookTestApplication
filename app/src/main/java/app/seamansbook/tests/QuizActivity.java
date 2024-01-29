@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.UiModeManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -231,16 +230,16 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
 
                     if (userSelectedAnswers.contains(answer) && !correctAnswersText.contains(answer)) {
                         button.setBackground(ContextCompat.getDrawable(this, R.drawable.round_back_red));
-                        button.setTextColor(Color.parseColor("#FF6259"));
+                        button.setTextColor(Color.parseColor("#FFFFFF"));
                         button.setCompoundDrawableTintList(inCorrectAnswerStyle);
                     } else if (userSelectedAnswers.contains(answer) && correctAnswersText.contains(answer)) {
                         button.setBackground(ContextCompat.getDrawable(this, R.drawable.round_back_green1));
-                        button.setTextColor(Color.parseColor("#33C98E"));
+                        button.setTextColor(Color.parseColor("#FFFFFF"));
                         button.setCompoundDrawableTintList(correctAnswerStyle);
                     } else if (!userSelectedAnswers.contains(answer) && correctAnswersText.contains(answer)) {
                         button.setCompoundDrawableTintList(inCorrectAnswerStyle);
                         button.setBackground(ContextCompat.getDrawable(this, R.drawable.round_back_green1));
-                        button.setTextColor(Color.parseColor("#33C98E"));
+                        button.setTextColor(Color.parseColor("#FFFFFF"));
                     }
                 }
             } else {
@@ -459,6 +458,8 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
     private List<QuestionButton> prepareQuestion() {
         String questionNumber = (currentQuestionIndex + 1) + "/" + questionList.size();
         questionCounter.setText(questionNumber);
+        Log.d("myLogs", "currentQuestionIndex: " + currentQuestionIndex);
+        Log.d("myLogs", "questionList.size(): " + questionList.size());
         Question question = questionList.get(currentQuestionIndex);
         questionText.setText(question.getQuestion());
 
@@ -489,19 +490,11 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
 
     private void setFavoriteButtonStyle(String questionId) {
         if (favoriteQuestionsIds.contains(questionId)) {
-            favoriteBtn.setImageResource(R.drawable.favorite_button_field);
-            favoriteBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.favorite_button_field));
-            favoriteBtn.setColorFilter(0xFFFFC107);
+            favoriteBtn.setImageResource(R.drawable.icon__favorite_button_filled);
+//            favoriteBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon__favorite_button_filled));
         } else {
-            favoriteBtn.setImageResource(R.drawable.star_icon);
-            UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
+            favoriteBtn.setImageResource(R.drawable.icon__star);
 
-            if (uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
-                favoriteBtn.setColorFilter(Color.WHITE);
-
-            } else {
-                favoriteBtn.setColorFilter(Color.BLACK);
-            }
         }
     }
 
