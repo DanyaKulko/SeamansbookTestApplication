@@ -1,9 +1,13 @@
 package app.seamansbook.tests;
 
+import static app.seamansbook.tests.MainActivity.expandClickArea;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -52,6 +56,7 @@ public class WrongAnswersFragment extends Fragment {
 
         TextView backButton = view.findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> requireActivity().onBackPressed());
+        expandClickArea(backButton, 100);
 
         QuestionScoresDBManager scoresDBManager = new QuestionScoresDBManager(requireContext());
         WrongAnswersFragmentModel quizResultModels = scoresDBManager.getWrongAnswers(id);

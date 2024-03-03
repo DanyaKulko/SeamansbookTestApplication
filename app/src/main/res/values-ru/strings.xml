@@ -9,7 +9,6 @@
     <string name="main_activity_start_button">Начать</string>
     <string name="main_activity_enable_hints">С подсказками</string>
     <string name="main_activity_disable_hints">Без подсказок</string>
-    <string name="main_activity_greeting_message">Добрый день, %1$s!</string>
     <string name="login_activity_main_button">Войти с помощью Google</string>
     <string name="download_questions_activity_main_button">Скачать вопросы</string>
     <string name="check">Проверить</string>
@@ -39,10 +38,10 @@
     <string name="download_title">Установка</string>
     <string name="installation_subtitle">Для использования приложения необходимо установить дополнительные файлы, содержащие последнюю версию теста.</string>
     <string name="install_button">Установить</string>
-    <string name="leave_the_test">Leave the test</string>
-    <string name="leave_the_test_confirmation">Are you sure you want to leave this test?</string>
-    <string name="button_yes">Yes</string>
-    <string name="button_no">No</string>
+    <string name="leave_the_test">ВЫЙТИ</string>
+    <string name="leave_the_test_confirmation">Вы уверены ,что хотите покинуть тест?</string>
+    <string name="button_yes">Да</string>
+    <string name="button_no">Нет</string>
     <string name="dropdown_option1">Ошибка в вопросе</string>
     <string name="dropdown_option2">Ошибка в варианте ответа</string>
     <string name="dropdown_option3">Вопрос не отображается корректно</string>
@@ -99,5 +98,23 @@
     <string name="fragment_settings__theme_default">Система</string>
     <string name="fragment_settings__theme_light">Светлая</string>
     <string name="fragment_settings__theme_dark">Темная</string>
+    <string name="notifications_dialog_title">Уведомления</string>
+    <string name="notifications_title_update">Обновление</string>
+    <string name="notifications_title_news">Новости</string>
+    <string name="notifications_learn_more_btn">Узнать подробнее</string>
+    <string name="notifications_update_btn">Обновить</string>
+    <string name="button_continue">Продолжить</string>
+    <string name="button_leave">Покинуть</string>
+    <string name="no_data_available">Пусто...</string>
+    <string name="knowledge_level_one">Низкий</string>
+    <string name="knowledge_level_two">Средний</string>
+    <string name="knowledge_level_three">Готов</string>
+    <string name="clear_statistics">Сбросить статистику</string>
+    <string name="clear_statistics_description">Вы уверены ,что хотите удалить всю статистику?</string>
+    <string name="clear_favorites">Сбросить избранные</string>
+    <string name="clear_favorites_description">Вы уверены ,что хотите удалить все избранные?</string>
+    <string name="statistics_cleared">Статистика успешно очищена!</string>
+    <string name="favorites_cleared">Избранные успешно очищены!</string>
+    <string name="notifications_dialog_no_notifications">Уведомлений нет</string>
 
 </resources>

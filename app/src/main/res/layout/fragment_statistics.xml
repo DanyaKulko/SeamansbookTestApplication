@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".StatisticsFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -28,205 +29,230 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <!--            style="@style/defaultCardBackground"-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/defaultCardBackground"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/defaultCardBoxShadow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                app:cardCornerRadius="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/defaultCardBackground2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/information_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_statistics_first_block_title"
+                        android:textColor="@color/primaryText"
+                        android:textFontWeight="500"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/total_questions_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28sp"
+                        android:text="@string/fragment_statistics_first_block_item_one"
+                        android:textColor="@color/primaryText"
+                        app:layout_constraintStart_toStartOf="@+id/information_title"
+                        app:layout_constraintTop_toBottomOf="@+id/information_title" />
+
+                    <TextView
+                        android:id="@+id/successful_questions_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/total_questions_title"
+                        tools:text="2" />
+
+                    <TextView
+                        android:id="@+id/failed_questions_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18sp"
+                        android:text="@string/fragment_statistics_first_block_item_two"
+                        android:textColor="@color/primaryText"
+                        app:layout_constraintStart_toStartOf="@+id/total_questions_title"
+                        app:layout_constraintTop_toBottomOf="@+id/total_questions_title" />
+
+                    <TextView
+                        android:id="@+id/failed_questions_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/failed_questions_title"
+                        tools:text="2" />
+
+                    <TextView
+                        android:id="@+id/failed_questions_title123"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18sp"
+                        android:text="@string/fragment_statistics_first_block_item_three"
+                        android:textColor="@color/primaryText"
+                        app:layout_constraintStart_toStartOf="@+id/failed_questions_title"
+                        app:layout_constraintTop_toBottomOf="@+id/failed_questions_title" />
+
+                    <TextView
+                        android:id="@+id/knowledge_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/failed_questions_title123"
+                        tools:text="Низкий" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/defaultCardBoxShadow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
-                android:padding="12dp">
+                app:cardCornerRadius="10dp">
 
-                <TextView
-                    android:id="@+id/information_title"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/defaultCardBackground2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fragment_statistics_first_block_title"
-                    android:textColor="@color/primaryText"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="match_parent"
+                    android:paddingTop="16dp">
 
-
-                <TextView
-                    android:id="@+id/total_questions_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28sp"
-                    android:text="@string/fragment_statistics_first_block_item_one"
-                    android:textColor="@color/primaryText"
-                    app:layout_constraintStart_toStartOf="@+id/information_title"
-                    app:layout_constraintTop_toBottomOf="@+id/information_title" />
-
-                <TextView
-                    android:id="@+id/successful_questions_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/primaryText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/total_questions_title"
-                    tools:text="2" />
-
-                <TextView
-                    android:id="@+id/failed_questions_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18sp"
-                    android:text="@string/fragment_statistics_first_block_item_two"
-                    android:textColor="@color/primaryText"
-                    app:layout_constraintStart_toStartOf="@+id/total_questions_title"
-                    app:layout_constraintTop_toBottomOf="@+id/total_questions_title" />
-
-                <TextView
-                    android:id="@+id/failed_questions_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/primaryText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/failed_questions_title"
-                    tools:text="2" />
-
-                <TextView
-                    android:id="@+id/failed_questions_title123"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18sp"
-                    android:text="@string/fragment_statistics_first_block_item_three"
-                    android:textColor="@color/primaryText"
-                    app:layout_constraintStart_toStartOf="@+id/failed_questions_title"
-                    app:layout_constraintTop_toBottomOf="@+id/failed_questions_title" />
-
-                <TextView
-                    android:id="@+id/knowledge_level"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/primaryText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/failed_questions_title123"
-                    tools:text="Низкий" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/statisticsPercentsBlock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:paddingTop="16sp"
-                android:paddingBottom="16sp">
-
-                <LinearLayout
-                    android:id="@+id/result_texts"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="20sp"
-                    android:paddingRight="20sp"
-                    android:weightSum="3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:id="@+id/result_texts"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/fragment_statistics_second_block_item_one"
-                        android:textColor="@color/primaryText" />
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginRight="10sp"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:layout_width="0dp"
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/fragment_statistics_second_block_item_one"
+                            android:textColor="@color/primaryText" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/fragment_statistics_second_block_item_two"
+                            android:textColor="@color/primaryText" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/fragment_statistics_second_block_item_three"
+                            android:textColor="@color/primaryText" />
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/percentageCardBoxShadow"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/fragment_statistics_second_block_item_two"
-                        android:textColor="@color/primaryText" />
+                        android:layout_marginStart="10sp"
+                        android:layout_marginTop="15sp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="10dp"
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/fragment_statistics_second_block_item_three"
-                        android:textColor="@color/primaryText" />
-                </LinearLayout>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/result_texts">
+                        <!--                        style="@style/statisticsPercentsSubBlock"-->
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    style="@style/statisticsPercentsSubBlock"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginTop="15sp"
-                    android:layout_marginRight="10sp"
-                    android:orientation="horizontal"
-                    android:paddingTop="3sp"
-                    android:paddingBottom="3sp"
-                    android:showDividers="middle"
-                    android:weightSum="3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/result_texts">
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            style="@style/percentageCardBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="3sp"
+                            android:paddingBottom="3sp"
+                            android:showDividers="middle"
+                            android:weightSum="3">
 
-                    <TextView
-                        android:id="@+id/startScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12sp"
-                        android:layout_marginBottom="12sp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="#D25351"
-                        android:textSize="20sp"
-                        tools:text="27%" />
+                            <TextView
+                                android:id="@+id/startScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12sp"
+                                android:layout_marginBottom="12sp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textColor="#D25351"
+                                android:textSize="20sp"
+                                tools:text="27%" />
 
-                    <View
-                        android:layout_width="1sp"
-                        android:layout_height="match_parent"
-                        android:background="#606060" />
+                            <View
+                                android:layout_width="1sp"
+                                android:layout_height="match_parent"
+                                android:background="#606060" />
 
-                    <TextView
-                        android:id="@+id/averageScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12sp"
-                        android:layout_marginBottom="12sp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="#D25351"
-                        android:textSize="20sp"
-                        tools:text="49%" />
+                            <TextView
+                                android:id="@+id/averageScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12sp"
+                                android:layout_marginBottom="12sp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textColor="#D25351"
+                                android:textSize="20sp"
+                                tools:text="49%" />
 
-                    <View
-                        android:layout_width="1sp"
-                        android:layout_height="match_parent"
-                        android:background="#606060" />
+                            <View
+                                android:layout_width="1sp"
+                                android:layout_height="match_parent"
+                                android:background="#606060" />
 
-                    <TextView
-                        android:id="@+id/bestScore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12sp"
-                        android:layout_marginBottom="12sp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="#00CB47"
-                        android:textSize="20sp"
-                        tools:text="71%" />
-                </LinearLayout>
+                            <TextView
+                                android:id="@+id/bestScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12sp"
+                                android:layout_marginBottom="12sp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textColor="#00CB47"
+                                android:textSize="20sp"
+                                tools:text="71%" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/statisticsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20sp"
-                tools:listitem="@layout/card_statistics_item"
-                tools:itemCount="5"/>
+                android:layout_marginTop="30dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/card_statistics_item" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -8,7 +8,6 @@
     <string name="main_activity_start_button">Start</string>
     <string name="main_activity_enable_hints">Enable hints</string>
     <string name="main_activity_disable_hints">Disable hints</string>
-    <string name="main_activity_greeting_message">Good day %1$s!</string>
     <string name="login_activity_main_button">Log In using Google</string>
     <string name="download_questions_activity_main_button">Download questions</string>
     <string name="check">Check</string>
@@ -98,5 +97,23 @@
     <string name="fragment_settings__theme_default">System</string>
     <string name="fragment_settings__theme_light">Light</string>
     <string name="fragment_settings__theme_dark">Dark</string>
+    <string name="notifications_dialog_title">Notifications</string>
+    <string name="notifications_title_update">Update</string>
+    <string name="notifications_title_news">News</string>
+    <string name="notifications_learn_more_btn">Learn more</string>
+    <string name="notifications_update_btn">Update</string>
+    <string name="button_continue">Continue</string>
+    <string name="button_leave">Leave</string>
+    <string name="no_data_available">Empty...</string>
+    <string name="knowledge_level_one">Low</string>
+    <string name="knowledge_level_two">Medium</string>
+    <string name="knowledge_level_three">Ready</string>
+    <string name="clear_statistics">Reset statistics</string>
+    <string name="clear_statistics_description">Are you sure you want to delete all statistics?</string>
+    <string name="clear_favorites">Reset favorites</string>
+    <string name="clear_favorites_description">"Are you sure you want to delete all your favorites? "</string>
+    <string name="statistics_cleared" >"Statistics cleared successfully! "</string>
+    <string name="favorites_cleared" >"The favorites have been successfully cleared! "</string>
+    <string name="notifications_dialog_no_notifications" >"No notifications "</string>
 
 </resources>

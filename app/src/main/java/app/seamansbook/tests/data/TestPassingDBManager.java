@@ -209,6 +209,13 @@ public class TestPassingDBManager {
         return answers;
     }
 
+    public void deleteUnfinishedTest() {
+        SQLiteDatabase database = db.getWritableDatabase();
+        String query = "DELETE FROM test_passing WHERE is_completed = 'false'";
+        database.execSQL(query);
+        database.close();
+    }
+
     private void closeCursorAndDatabase(Cursor cursor, SQLiteDatabase db) {
         if (cursor != null) {
             cursor.close();

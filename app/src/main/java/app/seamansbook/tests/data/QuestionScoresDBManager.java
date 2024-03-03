@@ -84,16 +84,17 @@ public class QuestionScoresDBManager {
         int totalTests = cursor.getCount();
         int failedTests = 0;
         int totalScore = 0;
-        String firstScore = "-";
-        String bestScore = "0";
+        int firstScore = 0;
+        int bestScore = 0;
 
         if (totalTests > 0 && cursor.moveToFirst()) {
             int percentColumnIndex = cursor.getColumnIndexOrThrow("percent");
-            firstScore = cursor.getString(percentColumnIndex) + "%";
+
+            firstScore = Math.round(Float.parseFloat(cursor.getString(percentColumnIndex)));
 
             do {
                 String percentStr = cursor.getString(percentColumnIndex);
-                float percent;
+                float percent = 0;
                 try {
                     percent = Float.parseFloat(percentStr);
                 } catch (NumberFormatException e) {
@@ -104,21 +105,20 @@ public class QuestionScoresDBManager {
                     failedTests++;
                 }
 
-                if (percent > Float.parseFloat(bestScore)) {
-                    bestScore = percentStr;
+                if (percent > bestScore) {
+                    bestScore = Math.round(percent);
                 }
 
                 totalScore += (int) percent;
             } while (cursor.moveToNext());
         }
 
-        String successTests = Integer.toString(totalTests - failedTests);
-        String averageScore = totalTests > 0 ? Integer.toString(totalScore / totalTests) + "%" : "-";
-        String bestScoreStr = bestScore.equals("0") ? "-" : bestScore + "%";
+        int successTests = totalTests - failedTests;
+        int averageScore = totalTests > 0 ? (totalScore / totalTests) : 0;
 
         cursor.close();
         db.close();
-        return new StatisticsMainInfoModel(successTests, Integer.toString(failedTests), "1", firstScore, averageScore, bestScoreStr);
+        return new StatisticsMainInfoModel(successTests, Integer.toString(failedTests), firstScore, averageScore, bestScore);
     }
 
 
@@ -252,10 +252,14 @@ public class QuestionScoresDBManager {
                 db.close();
             }
         }
-
         wrongAnswersFragmentModel.setWrongAnswers(wrongAnswersModels);
-
         return wrongAnswersFragmentModel;
+    }
+
+    public void clearStatistics() {
+        SQLiteDatabase db = this.db.getWritableDatabase();
+        db.delete(TEST_PASSING_TABLE_NAME, null, null);
+        db.close();
     }
 
 }

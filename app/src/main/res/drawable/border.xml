@@ -11,9 +11,7 @@
                 android:centerX="63.27%"
                 android:centerY="47.03%"
                 android:gradientRadius="119.23%" />
-
             <corners android:radius="10dp" />
-
         </shape>
 
     </item>
@@ -23,7 +21,7 @@
         android:right="2dp"
         android:top="2dp">
         <shape android:shape="rectangle" >
-            <solid android:color="@color/backgroundColor" />
+            <solid android:color="@color/backgroundSecondaryColor" />
             <corners android:radius="10dp" />
 
         </shape>

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,6 +58,9 @@ public class FavoritesFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
             recyclerView.setAdapter(favoritesListAdapter);
+        } else {
+            TextView empty_view = view.findViewById(R.id.empty_view);
+            empty_view.setVisibility(View.VISIBLE);
         }
     }
 }

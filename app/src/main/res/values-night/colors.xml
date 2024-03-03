@@ -22,8 +22,8 @@
     <color name="my_button_text_color">#1F6BB8</color>
 
 
-    <color name="backgroundColor">#212121</color>
-    <color name="backgroundSecondaryColor">#323232</color>
+    <color name="backgroundColor">#232323</color>
+    <color name="backgroundSecondaryColor">#1E1E1E</color>
 
     <color name="green">#43B16F</color>
 
@@ -36,5 +36,14 @@
     <color name="hintColor">#99FFFFFF</color>
 
     <color name="settings_secondary_color">#99FFFFFF</color>
+
+    <color name="notifications_block_background">#212121</color>
+    <color name="notifications_block_border">#FFF</color>
+    <color name="notifications_viewed_foreground">#4DFFFFFF</color>
+    <color name="notifications_viewed_text_color">#46FFFFFF</color>
+
+
+    <color name="button_secondary_background">#323232</color>
+
 
 </resources>

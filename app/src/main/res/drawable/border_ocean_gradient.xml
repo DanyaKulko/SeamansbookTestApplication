@@ -32,7 +32,8 @@
         android:right="2dp"
         android:top="2dp">
         <shape android:shape="rectangle" >
-            <solid android:color="@color/backgroundColor" />
+<!--            <solid android:color="@android:color/transparent" />-->
+            <solid android:color="@color/notifications_block_background" />
             <corners android:radius="10dp" />
 
         </shape>

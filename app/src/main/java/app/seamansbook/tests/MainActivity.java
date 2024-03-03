@@ -9,14 +9,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Bundle;
 
 import app.seamansbook.tests.interfaces.BottomNavigationController;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.TouchDelegate;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -113,6 +117,43 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationC
             configuration.setLocale(newLocale);
             res.updateConfiguration(configuration, res.getDisplayMetrics());
         }
+    }
+
+    public static void expandClickArea(final View button, final int extraPadding) {
+        final View parent = (View) button.getParent();
+        parent.post(() -> {
+            final Rect rect = new Rect();
+            button.getHitRect(rect);
+
+            rect.top -= extraPadding;
+            rect.bottom += extraPadding;
+            rect.left -= extraPadding;
+            rect.right += extraPadding;
+
+            parent.setTouchDelegate(new TouchDelegate(rect, button));
+        });
+    }
+
+    public static void subscribeToTopic(String topic) {
+        FirebaseMessaging.getInstance().subscribeToTopic(topic)
+                .addOnCompleteListener(task -> {
+                    String msg = "Subscribed to topic " + topic;
+                    if (!task.isSuccessful()) {
+                        msg = "Failed to subscribe to topic " + topic;
+                    }
+                    Log.d("myLogs", msg);
+                });
+    }
+
+    public static void unsubscribeFromTopic(String topic) {
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(topic)
+                .addOnCompleteListener(task -> {
+                    String msg = "Unsubscribed from topic " + topic;
+                    if (!task.isSuccessful()) {
+                        msg = "Failed to unsubscribe from topic " + topic;
+                    }
+                    Log.d("myLogs", msg);
+                });
     }
 
 

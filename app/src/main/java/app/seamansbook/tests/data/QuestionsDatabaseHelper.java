@@ -11,6 +11,7 @@ public class QuestionsDatabaseHelper extends SQLiteOpenHelper {
     static final String QUESTIONS_TABLE_NAME = "questions";
     static final String TEST_PASSING_TABLE_NAME = "test_passing";
     static final String USER_SCORES_TABLE_NAME = "user_scores";
+    static final String TABLE_NOTIFICATIONS = "notifications";
 
 
     private static final String CREATE_QUESTIONS_TABLE_QUERY =
@@ -41,6 +42,18 @@ public class QuestionsDatabaseHelper extends SQLiteOpenHelper {
                     "question_id TEXT, " +
                     "score INTEGER DEFAULT 0)";
 
+    private static final String CREATE_NOTIFICATIONS_TABLE =
+            "CREATE TABLE " + TABLE_NOTIFICATIONS + " (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "title TEXT, " +
+                    "body TEXT, " +
+                    "emailType VARCHAR(50), " +
+                    "showUpdateButton DEFAULT 0, " +
+                    "additionalLink VARCHAR(200), " +
+                    "viewed INTEGER DEFAULT 0, " +
+                    "timestamp VARCHAR(50) DEFAULT CURRENT_TIMESTAMP" +
+                    ")";
+
     public QuestionsDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -51,6 +64,7 @@ public class QuestionsDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_QUESTIONS_TABLE_QUERY);
         db.execSQL(CREATE_TEST_PASSING_TABLE_QUERY);
         db.execSQL(CREATE_USER_SCORES_TABLE_QUERY);
+        db.execSQL(CREATE_NOTIFICATIONS_TABLE);
     }
 
     @Override

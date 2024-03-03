@@ -1,14 +1,14 @@
 package app.seamansbook.tests.models;
 
 public class StatisticsMainInfoModel {
-    private String successfulTestsCount;
+    private int successfulTestsCount;
     private String failedTestsCount;
     private String knowledgeLevel;
-    private String firstScore;
-    private String averageScore;
-    private String bestScore;
+    private int firstScore;
+    private int averageScore;
+    private int bestScore;
 
-    public StatisticsMainInfoModel(String successfulTestsCount, String failedTestsCount, String knowledgeLevel, String firstScore, String averageScore, String bestScore) {
+    public StatisticsMainInfoModel(int successfulTestsCount, String failedTestsCount, int firstScore, int averageScore, int bestScore) {
         this.successfulTestsCount = successfulTestsCount;
         this.failedTestsCount = failedTestsCount;
         this.knowledgeLevel = knowledgeLevel;
@@ -17,7 +17,7 @@ public class StatisticsMainInfoModel {
         this.bestScore = bestScore;
     }
 
-    public String getSuccessfulTestsCount() {
+    public int getSuccessfulTestsCount() {
         return successfulTestsCount;
     }
 
@@ -29,15 +29,15 @@ public class StatisticsMainInfoModel {
         return knowledgeLevel;
     }
 
-    public String getFirstScore() {
+    public int getFirstScore() {
         return firstScore;
     }
 
-    public String getAverageScore() {
+    public int getAverageScore() {
         return averageScore;
     }
 
-    public String getBestScore() {
+    public int getBestScore() {
         return bestScore;
     }
 }

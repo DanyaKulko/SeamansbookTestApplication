@@ -1,114 +1,123 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/defaultCardBackground"
+    style="@style/defaultCardBoxShadow"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
     android:layout_marginEnd="20dp"
-    android:orientation="horizontal"
-    android:paddingEnd="16sp"
-    android:weightSum="10">
+    app:cardCornerRadius="10dp">
+
     <LinearLayout
-        android:layout_width="0dp"
+        style="@style/defaultCardBackground2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="9sp"
-        android:paddingBottom="9sp">
+        android:orientation="horizontal"
+        android:paddingEnd="16sp"
+        android:weightSum="10">
 
-        <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:gravity="center"
-            android:textColor="@color/primaryText"
-            tools:text="7 ДЕК" />
+            android:orientation="vertical"
+            android:paddingTop="9sp"
+            android:paddingBottom="9sp">
 
-        <TextView
-            android:id="@+id/timeTextView"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/primaryText"
+                tools:text="7 ДЕК" />
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/primaryText"
+                tools:text="13:34" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1sp"
+            android:layout_height="match_parent"
+            android:background="#606060" />
+        <!-- Result Column -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:gravity="center"
-            android:textColor="@color/primaryText"
-            tools:text="13:34" />
+            android:orientation="vertical"
+            android:paddingTop="9sp"
+            android:paddingBottom="9sp">
+
+            <TextView
+                android:id="@+id/scoreTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#00FF00"
+                tools:text="71%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/card_statistics_result"
+                android:textColor="@color/primaryText" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1sp"
+            android:layout_height="match_parent"
+            android:background="#606060" />
+        <!-- Error Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="9sp"
+            android:paddingBottom="9sp">
+
+            <TextView
+                android:id="@+id/errorsCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:textColor="@color/primaryText"
+                tools:text="11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/card_statistics_wrong"
+                android:textColor="@color/primaryText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/detailedStatisticsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_red_button_background"
+                android:padding="10sp"
+                android:src="@drawable/icon__arrow_right" />
+        </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="1sp"
-        android:layout_height="match_parent"
-        android:background="#606060" />
-    <!-- Result Column -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="9sp"
-        android:paddingBottom="9sp">
-
-        <TextView
-            android:id="@+id/scoreTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="#00FF00"
-            tools:text="71%" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/card_statistics_result"
-            android:textColor="@color/primaryText" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="1sp"
-        android:layout_height="match_parent"
-        android:background="#606060" />
-    <!-- Error Column -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="9sp"
-        android:paddingBottom="9sp">
-
-        <TextView
-            android:id="@+id/errorsCountTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:gravity="center"
-            android:textColor="@color/primaryText"
-            tools:text="11" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/card_statistics_wrong"
-            android:textColor="@color/primaryText" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/detailedStatisticsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_red_button_background"
-            android:padding="10sp"
-            android:src="@drawable/icon__arrow_right" />
-    </LinearLayout>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

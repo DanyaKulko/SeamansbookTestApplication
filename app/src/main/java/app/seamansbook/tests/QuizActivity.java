@@ -1,7 +1,6 @@
 package app.seamansbook.tests;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
@@ -109,7 +108,7 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
 
         dialog_result = new Dialog(QuizActivity.this);
         Objects.requireNonNull(dialog_result.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog_result.setContentView(R.layout.dialog_custom);
+        dialog_result.setContentView(R.layout.dialog_quiz_result);
         dialog_result.setCanceledOnTouchOutside(false);
         dialog_result.setCancelable(false);
         AppCompatButton startAgainButton = dialog_result.findViewById(R.id.startAgainButton);
@@ -389,7 +388,6 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
         addedToFavorites.setText(String.valueOf(favoriteQuestionsIds.size()));
 
         Bitmap map = takeScreenShot(QuizActivity.this);
-
         Bitmap fast = fastblur(map, 80);
         final Drawable draw = new BitmapDrawable(getResources(), fast);
         Objects.requireNonNull(dialog_result.getWindow()).setBackgroundDrawable(draw);
@@ -517,16 +515,26 @@ public class QuizActivity extends AppCompatActivity implements OnButtonClickList
 
     private void leaveTest() {
         if (!isResultShown) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(QuizActivity.this);
-            alert.setTitle(R.string.leave_the_test);
-            alert.setMessage(R.string.leave_the_test_confirmation);
+            Dialog leave_the_test = new Dialog(QuizActivity.this);
+            Objects.requireNonNull(leave_the_test.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            alert.setNegativeButton(R.string.button_no, (dialog, which) -> dialog.dismiss());
-            alert.setPositiveButton(R.string.button_yes, (dialog, which) -> {
-                dialog.dismiss();
+            leave_the_test.setContentView(R.layout.dialog_leave_test);
+            AppCompatButton continueButton = leave_the_test.findViewById(R.id.continueButton);
+
+            continueButton.setOnClickListener(v -> leave_the_test.dismiss());
+            AppCompatButton leaveTestButton = leave_the_test.findViewById(R.id.leaveTestButton);
+            leaveTestButton.setOnClickListener(v -> {
+                leave_the_test.dismiss();
                 QuizActivity.super.onBackPressed();
             });
-            alert.show();
+
+            ImageView close_button = leave_the_test.findViewById(R.id.close_button);
+            close_button.setOnClickListener(v -> leave_the_test.dismiss());
+
+            leave_the_test.setCanceledOnTouchOutside(false);
+            leave_the_test.setCancelable(false);
+
+            leave_the_test.show();
         }
     }
 

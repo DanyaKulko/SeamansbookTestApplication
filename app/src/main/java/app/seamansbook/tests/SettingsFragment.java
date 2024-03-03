@@ -1,29 +1,40 @@
 package app.seamansbook.tests;
 
 import static app.seamansbook.tests.Config.getLanguages;
+import static app.seamansbook.tests.MainActivity.expandClickArea;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.skydoves.balloon.ArrowOrientation;
 import com.skydoves.balloon.ArrowPositionRules;
 import com.skydoves.balloon.Balloon;
 import com.skydoves.balloon.BalloonAnimation;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 
+import app.seamansbook.tests.data.QuestionScoresDBManager;
 import app.seamansbook.tests.models.LanguageModel;
 
 
@@ -56,16 +67,92 @@ public class SettingsFragment extends Fragment {
         tooltipPushNotifications.setOnClickListener(v -> {
             showTooltip(getString(R.string.fragment_settings_hint_one), tooltipPushNotifications);
         });
+        expandClickArea(tooltipPushNotifications, 80);
 
         tooltipNewsAndUpdates.setOnClickListener(v -> {
             showTooltip(getString(R.string.fragment_settings_hint_two), tooltipNewsAndUpdates);
         });
+        expandClickArea(tooltipNewsAndUpdates, 80);
+
+
+        TextView clear_statistics = requireActivity().findViewById(R.id.clear_statistics);
+        TextView clear_favorites = requireActivity().findViewById(R.id.clear_favorites);
+
+        expandClickArea(clear_statistics, 40);
+        expandClickArea(clear_favorites, 40);
+
+        clear_statistics.setOnClickListener(v -> showConfirmDialog("statistics"));
+        clear_favorites.setOnClickListener(v -> showConfirmDialog("favorites"));
+
+        SwitchCompat disableNewsAndUpdatesSwitch = requireActivity().findViewById(R.id.disableNewsAndUpdatesSwitch);
+        SwitchCompat disablePushNotificationsSwitch = requireActivity().findViewById(R.id.disablePushNotificationsSwitch);
+
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("seamansbookMain", Context.MODE_PRIVATE);
+        boolean disableNewsAndUpdates = sharedPreferences.getBoolean("disableNewsAndUpdates", false);
+        boolean disablePushNotifications = sharedPreferences.getBoolean("disablePushNotifications", false);
+
+        disableNewsAndUpdatesSwitch.setChecked(disableNewsAndUpdates);
+        disablePushNotificationsSwitch.setChecked(disablePushNotifications);
+
+        disableNewsAndUpdatesSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("disableNewsAndUpdates", isChecked);
+            editor.apply();
+        });
+
+        disablePushNotificationsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("disablePushNotifications", isChecked);
+            editor.apply();
+        });
+
 
         initializeLanguageSelection();
         initializeThemeSelection();
 
 
 
+    }
+
+    private void showConfirmDialog(String type) {
+        Dialog settings_dialog = new Dialog(requireContext());
+        Objects.requireNonNull(settings_dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        settings_dialog.setContentView(R.layout.dialog_settings_clear_data);
+        AppCompatButton continueButton = settings_dialog.findViewById(R.id.continueButton);
+
+        continueButton.setOnClickListener(v2 -> settings_dialog.dismiss());
+
+        AppCompatButton dropDataButton = settings_dialog.findViewById(R.id.dropDataButton);
+        dropDataButton.setOnClickListener(v2 -> {
+            if(type.equals("statistics")) {
+                QuestionScoresDBManager scoresDBManager = new QuestionScoresDBManager(requireContext());
+                scoresDBManager.clearStatistics();
+                Toast.makeText(requireContext(), getString(R.string.statistics_cleared), Toast.LENGTH_SHORT).show();
+            } else {
+                SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("seamansbookMain", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putStringSet("favorite_questions", new HashSet<>());
+                editor.apply();
+                Toast.makeText(requireContext(), getString(R.string.favorites_cleared), Toast.LENGTH_SHORT).show();
+            }
+            settings_dialog.dismiss();
+        });
+
+        ImageView close_button = settings_dialog.findViewById(R.id.close_button);
+        close_button.setOnClickListener(v2 -> settings_dialog.dismiss());
+
+        TextView dialogTitle = settings_dialog.findViewById(R.id.dialog_title);
+        TextView dialogDescription = settings_dialog.findViewById(R.id.dialog_description);
+
+        if(type.equals("statistics")) {
+            dialogTitle.setText(getString(R.string.clear_statistics));
+            dialogDescription.setText(getString(R.string.clear_statistics_description));
+        } else {
+            dialogTitle.setText(getString(R.string.clear_favorites));
+            dialogDescription.setText(getString(R.string.clear_favorites_description));
+        }
+        settings_dialog.show();
     }
 
     private void showTooltip(String text, View view) {

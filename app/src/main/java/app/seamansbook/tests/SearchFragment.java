@@ -9,11 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 
 
 public class SearchFragment extends Fragment {
@@ -53,11 +58,9 @@ public class SearchFragment extends Fragment {
         martesthelpHyperlink.setMovementMethod(LinkMovementMethod.getInstance());
         martesthelpHyperlink.setLinkTextColor(ResourcesCompat.getColor(getResources(), R.color.primaryText, null));
 
+
         TextView martestHyperlink = requireView().findViewById(R.id.martestHyperlink);
         martestHyperlink.setMovementMethod(LinkMovementMethod.getInstance());
         martestHyperlink.setLinkTextColor(ResourcesCompat.getColor(getResources(), R.color.primaryText, null));
-
-
-
     }
 }

@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 import app.seamansbook.tests.data.QuestionDBManager;
+import app.seamansbook.tests.data.TestPassingDBManager;
 import app.seamansbook.tests.interfaces.ApiInterface;
 import app.seamansbook.tests.models.Question;
 import app.seamansbook.tests.models.Response2;
@@ -56,6 +57,9 @@ public class DownloadQuestionsActivity extends AppCompatActivity {
 
         dbHelper = new QuestionDBManager(this);
         downloadButton.setOnClickListener(v -> {
+            TestPassingDBManager dbHelper2 = new TestPassingDBManager(this);
+            dbHelper2.deleteUnfinishedTest();
+
 
             ApiInterface apiService = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
 
@@ -66,9 +70,6 @@ public class DownloadQuestionsActivity extends AppCompatActivity {
 
                 @Override
                 public void onResponse(@NonNull Call<Response2> call, @NonNull Response<Response2> response) {
-                    Log.d("getLocalizedMessage1", String.valueOf(call.request().url()));
-                    Log.d("getLocalizedMessage2", String.valueOf(response.isSuccessful()));
-                    Log.d("getLocalizedMessage3", String.valueOf(response.body()));
                     if (response.isSuccessful() && response.body() != null) {
                         Response2 serverResponse = response.body();
                         List<Question> questions = serverResponse.getQuestions();

@@ -1,11 +1,13 @@
 package app.seamansbook.tests.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -24,12 +26,14 @@ public class StatisticsListAdapter  extends RecyclerView.Adapter<RecyclerView.Vi
 
     private final OnItemClickListener listener;
     private final Locale locale;
+    private final Context context;
 
 
-    public StatisticsListAdapter(Locale locale, List<QuizResultModel> quizResultModels, OnItemClickListener listener) {
+    public StatisticsListAdapter(Context context, Locale locale, List<QuizResultModel> quizResultModels, OnItemClickListener listener) {
         this.locale = locale;
         this.quizResultModels = quizResultModels;
         this.listener = listener;
+        this.context = context;
     }
 
     @NonNull
@@ -46,12 +50,19 @@ public class StatisticsListAdapter  extends RecyclerView.Adapter<RecyclerView.Vi
         QuizResultModel quizResultModel = quizResultModels.get(position);
         StatisticsViewHolder statisticsViewHolder = (StatisticsViewHolder) holder;
 
+        int errorsCount = quizResultModel.getErrorsCount();
+
         statisticsViewHolder.date.setText(quizResultModel.getDate(locale));
         statisticsViewHolder.time.setText(quizResultModel.getTime());
         statisticsViewHolder.score.setText(quizResultModel.getScore() + "%");
-        statisticsViewHolder.errorsCount.setText(String.valueOf(quizResultModel.getErrorsCount()));
+        statisticsViewHolder.errorsCount.setText(String.valueOf(errorsCount));
 
-        statisticsViewHolder.detailedStatisticsButton.setOnClickListener(v -> listener.onItemClick(quizResultModel.getId()));
+        if(errorsCount == 0) {
+            statisticsViewHolder.detailedStatisticsButton.setBackground(ContextCompat.getDrawable(context, R.drawable.round_red_button_background_disabled));
+        } else {
+            statisticsViewHolder.detailedStatisticsButton.setOnClickListener(v -> listener.onItemClick(quizResultModel.getId()));
+        }
+
     }
 
     @Override

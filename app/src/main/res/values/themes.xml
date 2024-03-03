@@ -1,4 +1,5 @@
 <resources>
+
     <style name="Theme.SeamansbookTestApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>
@@ -35,9 +36,7 @@
         <item name="android:background">@drawable/border__light_theme</item>
     </style>
 
-    <style name="statisticsPercentsSubBlock" />
-
-    <style name="defaultCardBackground">
+    <style name="statisticsPercentsSubBlock">
         <item name="android:background">@drawable/border__light_theme</item>
     </style>
 
@@ -54,4 +53,59 @@
         <item name="android:background">@drawable/border__light_theme</item>
     </style>
 
+    <style name="testStyle">
+        <item name="android:backgroundTint">#F2F2F2</item>
+    </style>
+
+
+    <!--    ==============================================================   -->
+
+    <!--    parent   -->
+    <style name="defaultCardBoxShadow">
+        <item name="cardBackgroundColor">#F2F2F2</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+
+    <!-- children -->
+    <style name="defaultCardBackground2" />
+
+    <style name="percentageCardBoxShadow">
+    </style>
+    <style name="percentageCardBackground">
+        <item name="cardElevation">2dp</item>
+        <item name="android:background">#F2F2F2</item>
+    </style>
+
+
+    <style name="searchCardBoxShadow">
+        <item name="cardBackgroundColor">#F2F2F2</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+    <style name="searchCardBackground" />
+
+
+    <style name="searchSecondCardBoxShadow">
+        <item name="cardBackgroundColor">#F2F2F2</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+    <style name="searchSecondCardBackground" />
+
+
+    <style name="notificationsCardBoxShadow">
+        <item name="cardBackgroundColor">#F2F2F2</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+    <style name="notificationsCardBackground" />
+
+    <style name="homeScreenFirstCardBoxShadow">
+        <item name="cardBackgroundColor">#F2F2F2</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+    <style name="homeScreenFirstCardBackground" />
+
+    <style name="homeScreenSecondaryCardBoxShadow">
+        <item name="cardBackgroundColor">#F2F2F2</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+    <style name="homeScreenSecondaryCardBackground" />
 </resources>

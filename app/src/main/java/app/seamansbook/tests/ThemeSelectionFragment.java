@@ -1,5 +1,7 @@
 package app.seamansbook.tests;
 
+import static app.seamansbook.tests.MainActivity.expandClickArea;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -47,6 +49,7 @@ public class ThemeSelectionFragment extends Fragment {
                     .replace(R.id.fragment_container, new SettingsFragment())
                     .commit();
         });
+        expandClickArea(backButton, 100);
 
         initializeRecyclerView();
 

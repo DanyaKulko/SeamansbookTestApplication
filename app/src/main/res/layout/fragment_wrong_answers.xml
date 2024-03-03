@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".StatisticsFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -27,13 +28,14 @@
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30sp"
+                    android:layout_marginTop="28dp"
                     android:gravity="center"
                     android:text="@string/fragment_wrong_answers_title"
                     android:textColor="@color/primaryText"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,7 +64,7 @@
                 android:layout_marginTop="30sp"
                 android:textColor="@color/primaryText"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textFontWeight="500"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

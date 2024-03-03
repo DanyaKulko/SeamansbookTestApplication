@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0D1F6BB8"
     android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context=".QuizActivity">
 
 
@@ -39,21 +39,19 @@
 
                 <TextView
                     android:id="@+id/questionCounter"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
+                    android:layout_alignTop="@+id/favorite_button"
+                    android:layout_alignBottom="@+id/favorite_button"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="-1dp"
                     android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="0dp"
                     android:gravity="center"
                     android:text="1/10"
                     android:textAlignment="center"
+                    android:textFontWeight="600"
                     android:textSize="23sp"
                     tools:ignore="HardcodedText" />
 
@@ -93,9 +91,10 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
-                android:text="Question will be here..."
                 android:textSize="16sp"
-                tools:ignore="HardcodedText" />
+                android:textFontWeight="500"
+                android:textAlignment="center"
+                tools:text="Question will be here..." />
 
             <LinearLayout
                 android:id="@+id/main_layout"
@@ -123,8 +122,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHeight_default="wrap"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/answer_button_radio"
-                    tools:itemCount="4"/>
+                    tools:itemCount="4"
+                    tools:listitem="@layout/answer_button_radio" />
 
             </LinearLayout>
 
@@ -143,9 +142,9 @@
                     android:background="@drawable/round_back_green20"
                     android:padding="14dp"
                     android:text="@string/check"
+                    android:textFontWeight="600"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:textStyle="bold"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

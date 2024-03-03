@@ -11,11 +11,11 @@
         app:fontWeight="400" />
 
     <font
-        android:font="@font/montserrat_regular"
+        android:font="@font/montserrat_medium"
         android:fontStyle="normal"
         android:fontWeight="500"
 
-        app:font="@font/montserrat_regular"
+        app:font="@font/montserrat_medium"
         app:fontStyle="normal"
         app:fontWeight="500" />
 

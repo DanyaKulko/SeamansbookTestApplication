@@ -1,6 +1,9 @@
 package app.seamansbook.tests;
 
 import static app.seamansbook.tests.Config.getLanguages;
+import static app.seamansbook.tests.MainActivity.expandClickArea;
+import static app.seamansbook.tests.MainActivity.subscribeToTopic;
+import static app.seamansbook.tests.MainActivity.unsubscribeFromTopic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -42,6 +45,7 @@ public class LanguageSelectionFragment extends Fragment {
                     .replace(R.id.fragment_container, new SettingsFragment())
                     .commit();
         });
+        expandClickArea(backButton, 100);
 
         initializeRecyclerView();
         return view;
@@ -53,6 +57,10 @@ public class LanguageSelectionFragment extends Fragment {
 
         LanguageAdapter adapter = new LanguageAdapter(languages, selectedLanguage, language -> {
             saveSelectedLanguage(language.getCode());
+            for (LanguageModel languageModel : languages) {
+                unsubscribeFromTopic(languageModel.getCode());
+            }
+            subscribeToTopic(language.getCode());
             recreateFragment();
         });
 
